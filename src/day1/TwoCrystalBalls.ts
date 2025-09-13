@@ -1,5 +1,4 @@
 export default function two_crystal_balls(breaks: boolean[]): number {
-    let low = 0;
     let jump = Math.floor(Math.sqrt(breaks.length));
     let i = jump;
 
