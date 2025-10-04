@@ -12,7 +12,16 @@ export default class Queue<T> {
         this.length = 0;
     }
 
-    enqueue(item: T): void {}
+    enqueue(item: T): void {
+        const node = { value: item } as Node<T>;
+        this.length++;
+        if (!this.tail) {
+            this.tail = this.head = node;
+            return;
+        }
+        this.tail.next = node;
+        this.tail = node;
+    }
     deque(): T | undefined {
         if (!this.head) {
             return undefined;
