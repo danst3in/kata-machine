@@ -34,6 +34,9 @@ export default class Queue<T> {
 
         //  optional equivalent to "free" for cleaning up memory in language without garbage collection
         head.next = undefined;
+        if (this.length === 0) {
+            this.tail = undefined;
+        }
 
         return head.value;
     }
