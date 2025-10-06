@@ -1,6 +1,15 @@
-const qs = (arr: number[], lo: number, hi: number): void => {};
+const qs = (arr: number[], lo: number, hi: number): void => {
+    // Base Case
+    //  where lo and hi meet
+    if (lo >= hi) {
+        return;
+    }
+    const pivotIdx = partition(arr, lo, hi);
+    qs(arr, lo, pivotIdx - 1);
+    qs(arr, pivotIdx + 1, hi);
+};
 const partition = (arr: number[], lo: number, hi: number): number => {
-    const pivot: number = arr[hi];
+    const pivot = arr[hi];
     let idx = lo - 1;
     for (let i = lo; i < hi; i++) {
         if (arr[i] <= pivot) {
@@ -13,7 +22,7 @@ const partition = (arr: number[], lo: number, hi: number): number => {
     idx++;
 
     arr[hi] = arr[idx];
-    arr[idx] = arr[pivot];
+    arr[idx] = pivot;
 
     return idx;
 };
