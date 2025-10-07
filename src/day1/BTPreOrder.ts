@@ -1,17 +1,13 @@
-function walk(curr: BinaryNode<number | undefined>, path: number[]): number[] {
+function walk(curr: BinaryNode<number> | null, path: number[]): number[] {
     if (!curr) {
         return path;
-    } else if (curr.value) {
-        path.push(curr.value);
     }
 
-    if (curr.left) {
-        walk(curr.left, path);
-    }
+    path.push(curr.value);
 
-    if (curr.right) {
-        walk(curr.right, path);
-    }
+    walk(curr.left, path);
+
+    walk(curr.right, path);
 
     return path;
 }
