@@ -1,10 +1,12 @@
 function walk(curr: BinaryNode<number | undefined>, path: number[]): number[] {
+    if (!curr) {
+        return path;
+    }
     if (curr.left) {
         walk(curr.left, path);
     }
-    if (!curr) {
-        return path;
-    } else if (curr.value) {
+
+    if (curr.value) {
         path.push(curr.value);
     }
 
