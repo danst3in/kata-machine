@@ -10,6 +10,20 @@ export default class MinHeap {
     insert(value: number): void {}
     delete(): number {}
 
+    private heapifyUp(idx: number): void {
+        if (idx === 0) {
+            return;
+        }
+
+        const p = this.parent(idx);
+        const parentV = this.data[p];
+        const v = this.data[idx];
+
+        if (parentV > v) {
+            [this.data[idx], this.data[p]] = [parentV, v];
+            this.heapifyUp(p);
+        }
+    }
     private parent(idx: number): number {
         return Math.floor((idx - 1) / 2);
     }
