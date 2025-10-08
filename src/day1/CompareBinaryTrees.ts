@@ -2,7 +2,7 @@ export default function compare(
     a: BinaryNode<number> | null,
     b: BinaryNode<number> | null,
 ): boolean {
-    // Base Cases
+    // Base Cases - structural checks and value check
     if (a === null && b === null) {
         return true;
     }
