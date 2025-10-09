@@ -24,9 +24,20 @@ export default class LRU<K, V> {
 
     update(key: K, value: V): void {
         // does it exist?
-        // if not we need to insert
+        let node = this.lookup.get(key);
+        if (!node) {
+            // if not we need to insert
+            node = createNode(value);
+            this.length++;
+            this.prepend(node);
+            this.trimCache();
+        } else {
+            // if it does we need to update to front of list and update the value
+            this.detach(node);
+            // node = createNode(value)
+            this.prepend(node);
+        }
         // check capacity and evict if over capacity
-        // if it does we need to update to front of list and update the value
     }
     get(key: K): V | undefined {
         //  check the cache for existence
@@ -44,4 +55,5 @@ export default class LRU<K, V> {
 
     private detach(node: Node<V>) {}
     private prepend(node: Node<V>) {}
+    private trimCache(): void {}
 }
