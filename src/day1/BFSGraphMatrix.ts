@@ -3,8 +3,8 @@ export default function bfs(
     source: number,
     needle: number,
 ): number[] | null {
-    const seen = new Array(graph.length).fill(false);
-    const prev = new Array(graph.length).fill(-1);
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const prev: number[] = new Array(graph.length).fill(-1);
 
     const q: number[] = [source];
     seen[source] = true;
@@ -15,17 +15,22 @@ export default function bfs(
             break;
         }
 
-        seen[curr] = true;
+        seen[curr] = true; // Always true before this anyway?
 
         const adjs = graph[curr];
         for (let i = 0; i < adjs.length; i++) {
+            // if no edge
             if (adjs[i] === 0) {
                 continue;
             }
+            // if already seen/handled edge
             if (seen[i]) {
                 continue;
             }
+
             seen[i] = true;
+
+            // parent that lead to [i]
             prev[i] = curr;
             q.push(i);
         }
