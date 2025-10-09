@@ -30,7 +30,18 @@ export default class LRU<K, V> {
     }
     get(key: K): V | undefined {
         //  check the cache for existence
+        const node = this.lookup.get(key);
+        if (!node) {
+            return undefined;
+        }
+
         //  update value found by moving it to the head
+        this.detach(node);
+        this.prepend(node);
         //  return out value found or undefined if doesn't exist
+        return node.value;
     }
+
+    private detach(node: Node<V>) {}
+    private prepend(node: Node<V>) {}
 }
