@@ -19,7 +19,7 @@ function walk(
         return true;
     }
     // recursion
-    const list = graph[curr];
+    const list = graph[curr]; // all edge connections for current node
     for (let i = 0; i < list.length; i++) {
         const edge = list[i];
         if (walk(graph, edge.to, needle, seen, path)) {
